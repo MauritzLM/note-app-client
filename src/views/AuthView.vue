@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import LoginForm from '@/components/auth/LoginForm.vue';
 
 // display login / signup / password reset*
 </script>
 
 <template>
-  <h1>Login Page</h1>
+  <LoginForm />
 </template>
