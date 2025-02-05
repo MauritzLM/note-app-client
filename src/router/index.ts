@@ -5,9 +5,28 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
-      name: 'home',
+      path: '/all/:list',
+      name: 'all notes',
       component: NoteView,
+     
+    },
+    {
+      path: '/archived/:list',
+      name: 'archived notes',
+      component: NoteView,
+      
+    },
+    {
+      path: '/search/:list',
+      name: 'search',
+      component: NoteView,
+      
+    },
+    {
+      path: '/tags/:list',
+      name: 'tags',
+      component: NoteView,
+      
     },
     {
       path: '/settings',

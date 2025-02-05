@@ -7,15 +7,14 @@ import { RouterLink } from 'vue-router';
   <header>
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
 
       <!-- mobile buttons: [all notes, archived, search, tags, settings] -->
 
       <nav>
-        <button>All notes</button>
-        <button>Archived notes</button>
-        <button>Search</button>
-        <button>Tags</button>
+        <RouterLink to="/all/all">All notes</RouterLink>
+        <RouterLink to="/archived/archived">Archived notes</RouterLink>
+        <RouterLink to="/search/search">Search</RouterLink>
+        <RouterLink to="/tags/tags">Tags</RouterLink>
         <RouterLink to="/settings">Settings</RouterLink>
         <!-- tag list -->
       </nav>
