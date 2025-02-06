@@ -1,14 +1,22 @@
 <script setup lang="ts">
-import SearchBar from '@/components/SearchBar.vue'
-import { auth_status, user, all_notes } from '../context.ts'
-import { watch, ref } from 'vue'
-import { type noteObj } from '../types.ts'
+import SearchList from '@/components/lists/SearchList.vue'
+import ArchivedList from '@/components/lists/ArchivedList.vue'
+import AllNotes from '@/components/lists/AllNotes.vue'
+import TagList from '@/components/lists/TagList.vue'
+import { auth_status, user, all_notes, selected_note } from '../context.ts'
+import { watch, ref, computed } from 'vue'
 
-const editor = ref('# Hey')
+// note text
+const note_text = computed({
+  get: () => selected_note.note.text,
+  set: (val) => val
+})
 
-function select_note(note: noteObj) {
-    editor.value = note.text
-}
+// compute tags*
+
+
+
+const editor = ref(note_text)
 
 async function get_all_notes() {
   try {
@@ -27,7 +35,7 @@ async function get_all_notes() {
     }
 
     if (response.status === 401) {
-       auth_status.logout()
+      auth_status.logout()
     }
   }
   catch (error) {
@@ -45,22 +53,28 @@ watch(user, get_all_notes, { immediate: true })
   <main>
     <!-- notes list render list depending on params -->
     <h1>Note view</h1>
-    <!-- notes list -->
-    <ul v-if="$route.params.list === 'all'">
-      <li v-for="note in all_notes.notes" :key="note.id" @click="select_note(note)">
-        <h3>{{ note.title }}</h3>
-        <div>
-          <span v-for="tag in note.tags" :key="tag">{{ tag }}</span>
-        </div>
-        <!-- display date* -->
-      </li>
-  
-   </ul>
-   
-   <!-- editor -->
-   <div class="editor">
-     <textarea class="" v-model="editor"></textarea>
-   </div>
+    <!-- all notes list -->
+    <AllNotes v-if="$route.params.list === 'all'" />
+
+    <!-- Search list -->
+    <SearchList v-if="$route.params.list === 'search'" />
+
+    <!-- Archived notes list -->
+    <ArchivedList v-if="$route.params.list === 'archived'" />
+
+    <!-- Tag list -->
+    <TagList v-if="$route.params.list === 'tags'" />
+
+    <!-- mobile editor buttons -->
+    <div class="editor" v-if="selected_note.displayEditor">
+      <div>
+        <button @click="selected_note.changeDisplay(false)">Go back</button>
+        <!-- save, archive, delete buttons* -->
+      </div>
+      <!-- editor -->
+
+      <textarea class="" v-model="editor"></textarea>
+    </div>
 
   </main>
 </template>
