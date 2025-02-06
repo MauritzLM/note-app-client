@@ -1,3 +1,4 @@
+
 // note object
 export interface noteObj {
   id: string,
