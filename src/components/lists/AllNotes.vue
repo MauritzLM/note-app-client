@@ -10,7 +10,7 @@ import { all_notes, selected_note } from '@/context';
       <div>
         <span v-for="tag in note.tags" :key="tag">{{ tag }}</span>
       </div>
-      <!-- display date* -->
+       <p>{{ note.date }}</p>
     </li>
   </ul>
 </template>

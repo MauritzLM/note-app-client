@@ -19,7 +19,7 @@ const archived_notes = computed(() => {
       <div>
         <span v-for="tag in note.tags" :key="`${note.id}-${tag}`">{{ tag }}</span>
       </div>
-      <!-- display date* -->
+      <p>{{ note.date }}</p>
     </li>
   </ul>
 </template>

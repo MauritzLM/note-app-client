@@ -19,7 +19,7 @@ const tag_notes = computed(() => {
       <div>
         <span v-for="tag in n.tags" :key="`${n.id}-${tag}`">{{ tag }}</span>
       </div>
-      <!-- display date* -->
+      <p>{{ n.date }}</p>
     </li>
   </ul>
 </template>
