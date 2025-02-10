@@ -35,16 +35,20 @@ export const all_notes: notesState = reactive({
 })
 
 export const selected_note = reactive({
-  note: {id: '1', title: '', text: '', isArchived: false, tags: ['']},
+  note: { id: '1', title: '', text: '', isArchived: false, tags: [''], date: '' },
   displayEditor: false,
+  isNew: false,
   changeSelected(obj: noteObj) {
     this.note = obj
     this.displayEditor = true
-  },
-  updateText(newText: string) {
-    this.note = {...this.note, text: newText}
+    this.isNew = false
   },
   changeDisplay(b: boolean) {
     this.displayEditor = b
+  },
+  newNote() {
+    this.displayEditor = true
+    this.note = { id: '', title: '', text: '', isArchived: false, tags: [''], date: '' }
+    this.isNew = true
   }
 })
