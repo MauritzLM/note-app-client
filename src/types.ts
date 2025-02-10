@@ -6,6 +6,7 @@ export interface noteObj {
   text: string,
   isArchived: boolean,
   tags: string[]
+  date: string
 }
 
 export interface notesState {
