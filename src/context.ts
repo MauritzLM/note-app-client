@@ -1,19 +1,16 @@
 import { reactive } from "vue";
-import { type notesState, type noteObj } from "./types";
+import { type notesState, type noteObj, type userObj } from "./types";
 
 export const user = reactive({
   username: '',
   theme: '',
   font: '',
   token: '',
-  setFont(f: string) {
-    this.font = f
-  },
-  setTheme(th: string){
-      this.theme = th
-  },
-  setToken(t: string) {
-    this.token = t
+  setUser(user: userObj) {
+   this.username = user.details.username
+   this.theme = user.details.theme
+   this.font = user.details.font
+   this.token = user.token.access_token
   }
 })
 
