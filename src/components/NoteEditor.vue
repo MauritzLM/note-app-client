@@ -112,9 +112,7 @@ async function update_note() {
   <div>
     <label for="date">Last Edited</label>
     <span>{{ selected_note.note.date ? new Date(selected_note.note.date).toLocaleString('en-GB', {
-      'day':
-        'numeric', 'month': 'short', 'year': 'numeric'
-    }) : 'Not saved yet' }}</span>
+      'day': 'numeric', 'month': 'short', 'year': 'numeric' }) : 'Not saved yet' }}</span>
   </div>
 
   <textarea name="note-text" id="note-text" v-model="editor" placeholder="Start typing your note here"></textarea>
@@ -124,10 +122,10 @@ async function update_note() {
   <div id="form-modal" v-if="showmodal !== ''">
 
     <!-- delete form -->
-    <DeleteForm v-if="showmodal === 'delete'"/>
+    <DeleteForm v-if="showmodal === 'delete'" :show-modal="display_modal"/>
 
     <!-- archive form -->
-    <ArchiveForm v-if="showmodal === 'archive'"/>
+    <ArchiveForm v-if="showmodal === 'archive'" :show-modal="display_modal"/>
 
   </div>
 
@@ -135,3 +133,18 @@ async function update_note() {
   <!-- archive note modal -->
 
 </template>
+
+<style scoped>
+#form-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.192);
+}
+</style>
