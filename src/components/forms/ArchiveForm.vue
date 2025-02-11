@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { user, selected_note, auth_status } from '@/context'
 
+defineProps<{
+  showModal: (m: string) => void
+}>()
+
 async function archive_note(event: Event) {
   try {
     event.preventDefault()
@@ -37,7 +41,7 @@ async function archive_note(event: Event) {
       <p>Are you sure you want to archive this note? You can find it in the Archived Notes section and restore it
         anytime.</p>
       <div>
-        <button type="button">Cancel</button>
+        <button @click="showModal('')" type="button">Cancel</button>
         <button>Archive Note</button>
       </div>
 

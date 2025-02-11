@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { user, auth_status, selected_note } from '@/context';
 
+defineProps<{
+  showModal: (m: string) => void
+}>()
+
 // delete function
 async function delete_note(event: Event) {
   try {
@@ -36,7 +40,7 @@ async function delete_note(event: Event) {
   <h2>Delete note</h2>
   <p>Are you sure you want to permanently delete this note? This action cannot be undone.</p>
   <div>
-    <button type="button">Cancel</button>
+    <button @click="showModal('')" type="button">Cancel</button>
     <button>Delete Note</button>
   </div>
 
