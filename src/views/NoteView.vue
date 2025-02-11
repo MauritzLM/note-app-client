@@ -43,25 +43,35 @@ watch(user, get_all_notes, { immediate: true })
   <main>
     <!-- notes list render list depending on params -->
     <h1>Note view</h1>
-    <!-- all notes list -->
-    <AllNotes v-if="$route.params.list === 'all'" />
 
-    <!-- Search list -->
-    <SearchList v-if="$route.params.list === 'search'" />
+    <div class="current-list">
+      <!-- all notes list -->
+      <AllNotes v-if="$route.params.list === 'all'" />
 
-    <!-- Archived notes list -->
-    <ArchivedList v-if="$route.params.list === 'archived'" />
+      <!-- Search list -->
+      <SearchList v-if="$route.params.list === 'search'" />
 
-    <!-- Tag list -->
-    <TagList v-if="$route.params.list === 'tags'" />
-    
-    <div class="editor" v-if="selected_note.displayEditor">
-      
-      <!-- editor -->
-      <NoteEditor :title="selected_note.note.title" :note_text="selected_note.note.text" :tags="selected_note.note.tags"/>
+      <!-- Archived notes list -->
+      <ArchivedList v-if="$route.params.list === 'archived'" />
+
+      <!-- Tag list -->
+      <TagList v-if="$route.params.list === 'tags'" />
     </div>
-    
+
+    <div :class="selected_note.displayEditor ? 'editor' : 'hide'">
+
+      <!-- editor -->
+      <NoteEditor :title="selected_note.note.title" :note_text="selected_note.note.text"
+        :tags="selected_note.note.tags" :key="selected_note.note.title"/>
+    </div>
+
     <!-- new note button -->
-    <button v-if="!selected_note.displayEditor" @click="selected_note.newNote()">New</button>
+    <button :class="selected_note.displayEditor ? 'editor' : 'hide'" @click="selected_note.newNote()">New</button>
   </main>
 </template>
+
+<style scoped>
+.hide {
+  display: none;
+}
+</style>
