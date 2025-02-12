@@ -18,3 +18,11 @@ export interface userObj {
   details: { username: string, font: string, theme: string },
   token: { access_token: string, token_type: string }
 }
+
+
+export interface updateObj {
+  username: string
+  font: string
+  theme: string
+  token: string
+}
