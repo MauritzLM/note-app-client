@@ -5,8 +5,6 @@ import AllNotes from '@/components/lists/AllNotes.vue'
 import TagList from '@/components/lists/TagList.vue'
 import NoteEditor from '@/components/NoteEditor.vue'
 import { auth_status, user, all_notes, selected_note } from '../context.ts'
-import { watch } from 'vue'
-
 
 async function get_all_notes() {
   try {
@@ -33,9 +31,11 @@ async function get_all_notes() {
   }
 }
 
-get_all_notes()
+if (all_notes.notes.length <= 1) {
+  get_all_notes()
+}
 
-watch(user, get_all_notes, { immediate: true })
+// watch(() => route.params.list, get_all_notes, { immediate: true, once: true })
 
 </script>
 
@@ -61,8 +61,8 @@ watch(user, get_all_notes, { immediate: true })
     <div :class="selected_note.displayEditor ? 'editor' : 'hide'">
 
       <!-- editor -->
-      <NoteEditor :title="selected_note.note.title" :note_text="selected_note.note.text"
-        :tags="selected_note.note.tags" :key="selected_note.note.title"/>
+      <NoteEditor :title="selected_note.note.title" :note_text="selected_note.note.text" :tags="selected_note.note.tags"
+        :key="selected_note.note.title" />
     </div>
 
     <!-- new note button -->
