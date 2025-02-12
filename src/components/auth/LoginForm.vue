@@ -2,6 +2,10 @@
 import { ref } from 'vue';
 import { auth_status, user } from '@/context';
 
+defineProps<{
+  pageToggle: (m: string) => void
+}>()
+
 const name_input = ref('')
 const password_input = ref('')
 const error = ref('')
@@ -30,7 +34,8 @@ async function login(event: Event) {
     // change auth status, set user / localstorage
     if (response.status === 200) {
       user.setUser(data)
-      localStorage.setItem('user', JSON.stringify(data))
+
+      localStorage.setItem('user', JSON.stringify({ username: data.details.username, theme: data.details.theme, font: data.details.font, token: data.token.access_token }))
 
       auth_status.login()
     }
@@ -57,5 +62,7 @@ async function login(event: Event) {
     <span>{{ error }}</span>
 
     <button type="submit">Login</button>
+
+    <p>Already have an account? <button type="button" @click="pageToggle('signup')">Sign Up</button></p>
   </form>
 </template>
