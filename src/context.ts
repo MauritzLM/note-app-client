@@ -1,5 +1,5 @@
 import { reactive } from "vue";
-import { type notesState, type noteObj, type userObj } from "./types";
+import { type notesState, type noteObj, type userObj, type updateObj } from "./types";
 
 export const user = reactive({
   username: '',
@@ -7,10 +7,22 @@ export const user = reactive({
   font: '',
   token: '',
   setUser(user: userObj) {
-   this.username = user.details.username
-   this.theme = user.details.theme
-   this.font = user.details.font
-   this.token = user.token.access_token
+    this.username = user.details.username
+    this.theme = user.details.theme
+    this.font = user.details.font
+    this.token = user.token.access_token
+  },
+  updateTheme(t: string) {
+    this.theme = t
+  },
+  updateFont(f: string) {
+    this.font = f
+  },
+  updateUser(u: updateObj) {
+    this.username = u.username
+    this.theme = u.theme
+    this.font = u.font
+    this.token = u.token
   }
 })
 
@@ -21,13 +33,14 @@ export const auth_status = reactive({
   },
   logout() {
     this.authenticated = false
+    localStorage.clear()
   }
 })
 
 export const all_notes: notesState = reactive({
   notes: [{}],
   updateNotes(arr: noteObj[]) {
-     this.notes = [...arr] 
+    this.notes = [...arr]
   }
 })
 
