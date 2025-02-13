@@ -8,39 +8,49 @@ import ChangePasswordForm from '@/components/forms/ChangePasswordForm.vue';
 const current_setting = ref('')
 
 function select_form(v: string) {
-    current_setting.value = v
+  current_setting.value = v
 }
 
 
 </script>
 
 <template>
-  <div class="settings">
-    <h1>Settings</h1>
+  <div class="settings-wrapper">
+    <div :class="current_setting ? 'hide settings' : 'settings'">
+      <h1>Settings</h1>
 
-    <div>
-      <button @click="select_form('color')">Color theme</button>
-      <button @click="select_form('font')">Font theme</button>
-      <button @click="select_form('password')">Change password</button>
-      <button @click="auth_status.logout">Logout</button>
+      <div>
+        <button @click="select_form('color')">Color theme</button>
+        <button @click="select_form('font')">Font theme</button>
+        <button @click="select_form('password')">Change password</button>
+        <button @click="auth_status.logout">Logout</button>
+      </div>
     </div>
-  </div>
 
-  <div :class="current_setting ? 'current-setting' : 'hide'">
-    <button @click="select_form('')">Settings</button>
-    <ColorThemeForm v-if="current_setting === 'color'" :current_theme="user.theme" :key="user.theme"/>
+    <div :class="current_setting ? 'current-setting' : 'hide'">
+      <button @click="select_form('')">Settings</button>
+      <ColorThemeForm v-if="current_setting === 'color'" :current_theme="user.theme" :key="user.theme" />
 
-    <FontThemeForm v-if="current_setting === 'font'" :current_font="user.font" :key="user.font"/>
+      <FontThemeForm v-if="current_setting === 'font'" :current_font="user.font" :key="user.font" />
 
-    <ChangePasswordForm v-if="current_setting === 'password'"/>
+      <ChangePasswordForm v-if="current_setting === 'password'" />
 
+    </div>
   </div>
 </template>
 
 <style scoped>
 .hide {
-    display: none;
+  display: none;
+}
+
+.settings-wrapper {
+  padding: 24px 16px;
+
+  h1 {
+    margin-bottom: 16px;
   }
+}
 
 .settings {
   div {
@@ -50,10 +60,17 @@ function select_form(v: string) {
 
     button {
       text-align: left;
+      padding: 17px 0;
+      font-size: 14px;
+      font-weight: 500;
+
+      &:nth-of-type(3) {
+        border-bottom: 1px solid var(--borderColor);
+      }
     }
 
   }
 
-  
+
 }
 </style>
