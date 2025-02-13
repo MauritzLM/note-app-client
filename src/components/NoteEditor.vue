@@ -90,8 +90,8 @@ async function update_note() {
 </script>
 
 <template>
-  <div>
-    <button @click="selected_note.changeDisplay(false)">Go back</button>
+  <div class="top-bar">
+    <button class="back-btn" @click="selected_note.changeDisplay(false)">Go back</button>
     <!-- save, archive, delete buttons* -->
     <div v-if="selected_note.isNew">
       <button @click="create_note()">save note</button>
@@ -103,16 +103,22 @@ async function update_note() {
     </div>
   </div>
   <!-- title, tags -->
-  <div>
-    <input type="text" id="note-title" name="note-title" v-model="note_title" />
-    <label for="note-tags">Tags</label>
-    <input type="text" id="note-tags" name="note-tags" v-model="note_tags"
-      placeholder="Add tags seperated by commas (e.g Work, Planning)">
-  </div>
-  <div>
-    <label for="date">Last Edited</label>
-    <span>{{ selected_note.note.date ? new Date(selected_note.note.date).toLocaleString('en-GB', {
-      'day': 'numeric', 'month': 'short', 'year': 'numeric' }) : 'Not saved yet' }}</span>
+  <div class="title-section">
+    <input type="text" id="note-title" name="note-title" v-model="note_title" placeholder="Enter a title..." required />
+    <div class="col-2">
+      <div class="form-group">
+        <label for="note-tags">Tags</label>
+        <input type="text" id="note-tags" name="note-tags" v-model="note_tags"
+          placeholder="Add tags seperated by commas (e.g Work, Planning)" required />
+      </div>
+
+      <div class="form-group">
+        <label for="date">Last Edited</label>
+        <span>{{ selected_note.note.date ? new Date(selected_note.note.date).toLocaleString('en-GB', {
+          'day': 'numeric', 'month': 'short', 'year': 'numeric'
+        }) : 'Not saved yet' }}</span>
+      </div>
+    </div>
   </div>
 
   <textarea name="note-text" id="note-text" v-model="editor" placeholder="Start typing your note here"></textarea>
@@ -122,10 +128,10 @@ async function update_note() {
   <div id="form-modal" v-if="showmodal !== ''">
 
     <!-- delete form -->
-    <DeleteForm v-if="showmodal === 'delete'" :show-modal="display_modal"/>
+    <DeleteForm v-if="showmodal === 'delete'" :show-modal="display_modal" />
 
     <!-- archive form -->
-    <ArchiveForm v-if="showmodal === 'archive'" :show-modal="display_modal"/>
+    <ArchiveForm v-if="showmodal === 'archive'" :show-modal="display_modal" />
 
   </div>
 
@@ -135,6 +141,73 @@ async function update_note() {
 </template>
 
 <style scoped>
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--borderColor);
+
+  div {
+    display: flex;
+    gap: 16px;
+  }
+
+}
+
+.title-section {
+  padding: 12px 0;
+  display: flex;
+  flex-direction: column;
+  /* gap: 12px; */
+  border-bottom: 1px solid var(--borderColor);
+
+  #note-title {
+    font-size: 24px;
+    font-weight: 700;
+    padding-left: 0;
+    outline: none;
+  }
+
+  .col-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .form-group {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    font-size: 12px;
+    align-items: center;
+
+    input {
+      padding-left: 0;
+      outline: none;
+    }
+
+    /* label {
+      width: 30%;
+    } */
+  }
+}
+
+#note-text {
+  appearance: none;
+  padding: 12px 0;
+  display: block;
+  overflow: auto;
+  outline: none;
+  color: var(--editorTextColor);
+  flex: auto;
+}
+
+input,
+textarea {
+  border: none;
+  width: 100%;
+}
+
 #form-modal {
   position: absolute;
   top: 0;
