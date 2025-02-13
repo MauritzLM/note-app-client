@@ -5,6 +5,16 @@ import AllNotes from '@/components/lists/AllNotes.vue'
 import TagList from '@/components/lists/TagList.vue'
 import NoteEditor from '@/components/NoteEditor.vue'
 import { auth_status, user, all_notes, selected_note } from '../context.ts'
+// import { useRoute } from 'vue-router'
+// import { computed } from 'vue'
+
+// const current_route = useRoute()
+
+// const page_heading = computed(() => {
+//   if (current_route === 'all') {
+//     return 'All notes'
+//   }
+// })
 
 async function get_all_notes() {
   try {
@@ -19,6 +29,7 @@ async function get_all_notes() {
 
     if (response.status === 200) {
       all_notes.updateNotes(data)
+      console.log(data)
       return
     }
 
@@ -42,9 +53,9 @@ if (all_notes.notes.length <= 1) {
 <template>
   <main>
     <!-- notes list render list depending on params -->
-    <h1>Note view</h1>
+    <!-- <h1>{{ current_route.params.list }} Notes</h1> -->
 
-    <div class="current-list">
+    <div :class="selected_note.displayEditor ? 'hide' : 'current-list'">
       <!-- all notes list -->
       <AllNotes v-if="$route.params.list === 'all'" />
 
@@ -66,12 +77,30 @@ if (all_notes.notes.length <= 1) {
     </div>
 
     <!-- new note button -->
-    <button :class="selected_note.displayEditor ? 'editor' : 'hide'" @click="selected_note.newNote()">New</button>
+    <button :class="selected_note.displayEditor ? 'hide' : 'new-btn'" @click="selected_note.newNote()">New</button>
   </main>
 </template>
 
 <style scoped>
 .hide {
   display: none;
+}
+
+.current-list {
+  padding: 20px 16px;
+}
+
+.editor {
+  padding: 20px 16px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.new-btn {
+  position: absolute;
+  right: 20px;
+  bottom: 100px;
 }
 </style>
