@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-import { watch } from 'vue';
+import { watch, computed } from 'vue';
 import NavComponent from './components/NavComponent.vue';
 import AuthView from './views/AuthView.vue';
 import { auth_status, user } from './context';
+
+
+const color_theme = computed(() => {
+  return user.theme === 'system' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : user.theme
+})
 
 // determine auth status
 // get token from local storage
@@ -24,7 +29,7 @@ watch(user, () => {
 </script>
 
 <template>
-  <div data-theme="" data-font="">
+  <div class="container" :data-theme="color_theme" :data-font="user.font">
     <NavComponent v-if="auth_status.authenticated" />
     <RouterView v-if="auth_status.authenticated" />
 
@@ -32,4 +37,12 @@ watch(user, () => {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.container {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 54px auto;
+}
+</style>
