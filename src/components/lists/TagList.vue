@@ -28,15 +28,39 @@ function changeTag(t: string) {
 </script>
 
 <template>
-  <h2>Tags</h2>
+  <div :class="selected_tag === '' ? '' : 'hide'">
+    <h1>Tags</h1>
+    <ul>
+      <li v-for="tag in tag_list" :key="tag" @click="changeTag(tag)">
+        <img src="/images/icon-tag.svg" alt="" height="20px" width="20px" decoding="async" aria-hidden="true">
+        <span>{{ tag }}</span>
+      </li>
+    </ul>
+  </div>
 
-  <ul>
-    <li v-for="tag in tag_list" :key="tag" @click="changeTag(tag)">
-      {{ tag }}
-    </li>
-  </ul>
-
-  <button v-if="selected_tag !== ''" @click="changeTag('')">Go back</button>
+  <button v-if="selected_tag !== ''" @click="changeTag('')">All tags</button>
   <!-- if tag selected -->
   <SelectedTagList :tag="selected_tag" v-if="selected_tag !== ''" />
 </template>
+
+<style scoped>
+.hide {
+  display: none;
+}
+
+ul {
+  li {
+    border-bottom: 1px solid var(--borderColor);
+    padding: 15px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+
+    span {
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+}
+</style>
