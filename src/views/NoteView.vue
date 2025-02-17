@@ -18,7 +18,7 @@ import { auth_status, user, all_notes, selected_note } from '../context.ts'
 
 async function get_all_notes() {
   try {
-    const response = await fetch('http://localhost:8000/notes/all', {
+    const response = await fetch('http://127.0.0.1/notes/all', {
       method: 'GET',
       headers: {
         'authorization': `bearer ${user.token}`
@@ -82,6 +82,8 @@ if (all_notes.notes.length <= 1) {
           d="M12 5a.75.75 0 0 1 .75.75V11H18a.75.75 0 0 1 0 1.5h-5.25v5.25a.75.75 0 0 1-1.5 0V12.5H6A.75.75 0 0 1 6 11h5.25V5.75A.75.75 0 0 1 12 5Z" />
       </svg>
     </button>
+
+    <!-- toast* -->
   </main>
 </template>
 

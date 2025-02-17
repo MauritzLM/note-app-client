@@ -14,7 +14,7 @@ async function update_font(event: Event) {
     if (picked.value === user.font) {
       return
     }
-    const response = await fetch('http://localhost:8000/users/font', {
+    const response = await fetch('http://127.0.0.1/users/font', {
       method: 'POST',
       headers: {
         'authorization': `bearer ${user.token}`,

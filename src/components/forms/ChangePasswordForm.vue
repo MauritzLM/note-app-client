@@ -12,7 +12,7 @@ async function change_password(event: Event) {
   try {
     event.preventDefault()
 
-    const response = await fetch('http://localhost:8000/users/changepwd', {
+    const response = await fetch('http://127.0.0.1/users/changepwd', {
       method: 'POST',
       headers: {
         'authorization': `bearer ${user.token}`,
@@ -89,7 +89,7 @@ form {
 
   h2 {
     font-size: 24px;
-    
+
   }
 
   .form-group {

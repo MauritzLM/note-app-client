@@ -11,7 +11,7 @@ const tag_notes = computed(() => {
 </script>
 
 <template>
-  <h1>Notes tagged: {{ tag }}</h1>
+  <h1><span>Notes tagged:</span> {{ tag }}</h1>
   <p class="description">All notes with the "{{ tag }}" tag are shown here.</p>
 
   <ul>
@@ -20,12 +20,18 @@ const tag_notes = computed(() => {
       <div>
         <span v-for="tag in n.tags" :key="`${n.id}-${tag}`">{{ tag }}</span>
       </div>
-      <p>{{ new Date(n.date).toLocaleString('en-GB', {'day': 'numeric', 'month': 'short', 'year': 'numeric' }) }}</p>
+      <p>{{ new Date(n.date).toLocaleString('en-GB', { 'day': 'numeric', 'month': 'short', 'year': 'numeric' }) }}</p>
     </li>
   </ul>
 </template>
 
 <style scoped>
+h1 {
+  span {
+    color: var(--textColorAlt1);
+  }
+}
+
 ul {
 
   li {

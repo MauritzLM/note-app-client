@@ -65,7 +65,7 @@ async function update_note() {
 
     console.log(note_to_update)
 
-    const response = await fetch('http://localhost:8000/notes/update', {
+    const response = await fetch('http://127.0.0.1/notes/update', {
       method: 'PUT',
       headers: {
         'authorization': `bearer ${user.token}`,
@@ -297,11 +297,13 @@ textarea {
   top: 0;
   left: 0;
   right: 0;
+  bottom: 0;
   height: 100vh;
   width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.192);
+  padding: 16px;
 }
 </style>

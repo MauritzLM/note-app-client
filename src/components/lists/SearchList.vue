@@ -42,6 +42,10 @@ const filteredNotes = computed(() => {
    <div v-if="filteredNotes.length === 0" class="no-match">
      No notes match your search.
    </div>
+
+   <div v-if="search_term === ''" class="no-match">
+    Search by name or tag.
+   </div>
 </template>
 
 <style scoped>
