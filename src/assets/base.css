@@ -178,6 +178,7 @@
   /* text */
   --textColorMain: var(--neutral-950);
   --textColorAlt1: var(--neutral-700);
+  --textColorAlt2: var(--neutral-600);
   --descriptionTextColor: var(--neutral-700);
   --editorTextColor: var(--neutral-800);
 
@@ -194,6 +195,7 @@ div[data-theme="dark"] {
   --borderColor: var(--neutral-800);
   --tagBackground: var(--neutral-700);
   --textColorAlt1: var(--neutral-200);
+  --textColorAlt2: var(--neutral-300);
   --descriptionTextColor: var(--neutral-300);
   --editorTextColor: var(--neutral-100);
 
