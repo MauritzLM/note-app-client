@@ -60,7 +60,13 @@ async function change_password(event: Event) {
     <div class="form-group">
       <label for="new">New password</label>
       <input type="password" name="new" id="new" v-model="new_p">
-      <span>At least 8 characters</span>
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="none" viewBox="0 0 24 24">
+          <path stroke="#0E121B" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0ZM12.006 15.693v-4.3M12 8.355v-.063" />
+        </svg>
+        <span>At least 8 characters</span>
+      </div>
     </div>
 
     <div class="form-group">
@@ -69,7 +75,47 @@ async function change_password(event: Event) {
     </div>
     <p>{{ error }}</p>
 
-    <button>submit</button>
+    <button class="btn-primary">Save Password</button>
   </form>
 
 </template>
+
+<style scoped>
+form {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+
+  h2 {
+    font-size: 24px;
+    
+  }
+
+  .form-group {
+    label {
+      margin-bottom: 10px;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    div {
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--textColorAlt2);
+    }
+  }
+
+  input {
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+
+  button {
+    justify-self: end;
+  }
+}
+</style>
