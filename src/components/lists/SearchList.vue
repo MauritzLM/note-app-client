@@ -13,7 +13,16 @@ const filteredNotes = computed(() => {
 
 <template>
   <h1>Search</h1>
-  <input type="text" id="search-input" v-model="search_term">
+  <div class="input-wrapper">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+      <path fill="#0E121B" fill-rule="evenodd"
+        d="M11.248 3.5a7.289 7.289 0 1 0 0 14.577 7.289 7.289 0 0 0 0-14.577ZM2.46 10.79a8.789 8.789 0 1 1 17.577 0 8.789 8.789 0 0 1-17.577 0Z"
+        clip-rule="evenodd" />
+      <path fill="#0E121B" fill-rule="evenodd" d="m16.736 15.648 5.616 5.6-1.06 1.063-5.615-5.601 1.06-1.062Z"
+        clip-rule="evenodd" />
+    </svg>
+    <input type="text" id="search-input" v-model="search_term">
+  </div>
 
   <p v-if="search_term !== ''" class="description">All notes matching <span>"{{ search_term }}"</span> are displayed
     below.</p>
@@ -29,12 +38,28 @@ const filteredNotes = computed(() => {
     </li>
   </ul>
 
-  <!-- add emty search p* -->
+  <!-- emty search -->
+   <div v-if="filteredNotes.length === 0" class="no-match">
+     No notes match your search.
+   </div>
 </template>
 
 <style scoped>
 #search-input {
   margin: 16px 0;
+  padding-left: 44px;
+  height: 52px;
+  border-radius: 10px;
+  background-color: var(--bannerColor);
+}
+
+.input-wrapper {
+  position: relative;
+  svg {
+    position: absolute;
+    top: 30px;
+    left: 16px;
+  }
 }
 
 .description {
@@ -70,5 +95,12 @@ ul {
       color: var(--textColorAlt1);
     }
   }
+}
+
+.no-match {
+  padding: 8px;
+  background-color: var(--bannerColor);
+  border: 1px solid var(--borderColor);
+  border-radius: 10px;
 }
 </style>
