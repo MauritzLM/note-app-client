@@ -29,7 +29,6 @@ async function get_all_notes() {
 
     if (response.status === 200) {
       all_notes.updateNotes(data)
-      console.log(data)
       return
     }
 
@@ -77,7 +76,12 @@ if (all_notes.notes.length <= 1) {
     </div>
 
     <!-- new note button -->
-    <button :class="selected_note.displayEditor ? 'hide' : 'new-btn'" @click="selected_note.newNote()">New</button>
+    <button :class="selected_note.displayEditor ? 'hide' : 'new-btn'" @click="selected_note.newNote()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24">
+        <path fill="#FFF"
+          d="M12 5a.75.75 0 0 1 .75.75V11H18a.75.75 0 0 1 0 1.5h-5.25v5.25a.75.75 0 0 1-1.5 0V12.5H6A.75.75 0 0 1 6 11h5.25V5.75A.75.75 0 0 1 12 5Z" />
+      </svg>
+    </button>
   </main>
 </template>
 
@@ -102,5 +106,13 @@ if (all_notes.notes.length <= 1) {
   position: absolute;
   right: 20px;
   bottom: 100px;
+  background-color: var(--blue-500);
+  border-radius: 50%;
+  height: 48px;
+  width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
 }
 </style>
