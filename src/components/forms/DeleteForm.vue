@@ -9,8 +9,8 @@ defineProps<{
 async function delete_note(event: Event) {
   try {
     event.preventDefault()
-    
-    const response = await fetch('http://localhost:8000/notes/delete', {
+
+    const response = await fetch('http://127.0.0.1/notes/delete', {
       method: 'POST',
       headers: {
         'authorization': `bearer ${user.token}`,
@@ -36,13 +36,87 @@ async function delete_note(event: Event) {
 </script>
 
 <template>
-<form action="" @submit="delete_note">
-  <h2>Delete note</h2>
-  <p>Are you sure you want to permanently delete this note? This action cannot be undone.</p>
-  <div>
-    <button @click="showModal('')" type="button">Cancel</button>
-    <button>Delete Note</button>
-  </div>
+  <form action="" @submit="delete_note">
+    <div class="text">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" fill="none" viewBox="0 0 24 25">
+          <path stroke="#0E121B" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="m14.852 3.879.818 1.785h2.64c.811 0 1.47.658 1.47 1.47V8.22c0 .555-.45 1.005-1.006 1.005H5.005C4.45 9.226 4 8.776 4 8.221V7.133c0-.811.658-1.47 1.47-1.47h2.639l.818-1.784c.246-.536.78-.879 1.37-.879h3.185c.59 0 1.125.343 1.37.879ZM18.24 9.3v8.686c0 1.665-1.333 3.014-2.977 3.014H8.517c-1.644 0-2.977-1.349-2.977-3.014V9.301M10.2 12.816v4.509m3.38-4.509v4.509" />
+        </svg>
+      </div>
+      <div>
+        <h2>Delete note</h2>
+        <p>Are you sure you want to permanently delete this note? This action cannot be undone.</p>
+      </div>
+    </div>
+    <div class="buttons">
+      <button @click="showModal('')" type="button">Cancel</button>
+      <button type="submit">Delete Note</button>
+    </div>
 
-</form>
+  </form>
 </template>
+
+<style scoped>
+form {
+  background-color: var(--bodyBackgroundColor);
+  border-radius: 10px;
+
+  .text,
+  .buttons {
+    padding: 20px;
+  }
+
+  .text {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 16px;
+
+    h2 {
+      margin-bottom: 6px;
+      font-size: 16px;
+    }
+
+    p {
+      font-size: 14px
+    }
+
+
+    div {
+      &:nth-of-type(1) {
+        height: 40px;
+        width: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--surfaceColorAlt1);
+        border-radius: 10px;
+      }
+    }
+  }
+
+  .buttons {
+    border-top: 1px solid var(--borderColor);
+    display: flex;
+    justify-content: end;
+    gap: 16px;
+
+    button {
+      padding: 12px 16px;
+      border-radius: 10px;
+      color: #FFF;
+    }
+
+    button[type="button"] {
+      background-color: var(--surfaceColorAlt1);
+      color: var(--textColorAlt3);
+
+    }
+
+    button[type="submit"] {
+      background-color: var(--red-500);
+    }
+  }
+
+}
+</style>
