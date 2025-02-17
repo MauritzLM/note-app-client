@@ -172,6 +172,7 @@
   --bodyBackgroundColor: var(--neutral-0);
   --bannerColor: var(--neutral-100);
   --selectedSurface: var(--blue-50);
+  --surfaceColorAlt1: var(--neutral-100);
   --borderColor: var(--neutral-200);
   --tagBackground: var(--neutral-200);
 
@@ -179,6 +180,7 @@
   --textColorMain: var(--neutral-950);
   --textColorAlt1: var(--neutral-700);
   --textColorAlt2: var(--neutral-600);
+  --textColorAlt3: var(--neutral-600);
   --descriptionTextColor: var(--neutral-700);
   --editorTextColor: var(--neutral-800);
 
@@ -192,10 +194,12 @@ div[data-theme="dark"] {
   --textColorMain: var(--neutral-0);
   --bannerColor: var(--neutral-800);
   --selectedSurface: var(--neutral-700);
+  --surfaceColorAlt1: var(--neutral-600);
   --borderColor: var(--neutral-800);
   --tagBackground: var(--neutral-700);
   --textColorAlt1: var(--neutral-200);
   --textColorAlt2: var(--neutral-300);
+  --textColorAlt3: var(--neutral-200);
   --descriptionTextColor: var(--neutral-300);
   --editorTextColor: var(--neutral-100);
 
