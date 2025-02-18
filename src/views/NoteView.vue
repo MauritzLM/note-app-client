@@ -4,7 +4,7 @@ import ArchivedList from '@/components/lists/ArchivedList.vue'
 import AllNotes from '@/components/lists/AllNotes.vue'
 import TagList from '@/components/lists/TagList.vue'
 import NoteEditor from '@/components/NoteEditor.vue'
-import { auth_status, user, all_notes, selected_note } from '../context.ts'
+import { auth_status, user, all_notes, selected_note, toast_message } from '../context.ts'
 // import { useRoute } from 'vue-router'
 // import { computed } from 'vue'
 
@@ -84,6 +84,20 @@ if (all_notes.notes.length <= 1) {
     </button>
 
     <!-- toast* -->
+    <div v-if="toast_message.showToast" class="toast">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24">
+        <path fill="#0E121B" fill-rule="evenodd"
+          d="m15.993 10.222-4.618 4.618a.746.746 0 0 1-1.061 0l-2.309-2.309a.75.75 0 0 1 1.06-1.061l1.78 1.779 4.087-4.088a.75.75 0 1 1 1.061 1.061ZM12 2.5c-5.238 0-9.5 4.262-9.5 9.5 0 5.239 4.262 9.5 9.5 9.5s9.5-4.261 9.5-9.5c0-5.238-4.262-9.5-9.5-9.5Z"
+          clip-rule="evenodd" />
+      </svg>
+      <span>{{ toast_message.currentMsg }}</span>
+      <button @click="toast_message.displayToast(false)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24">
+          <path stroke="#0E121B" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="m6 6 12 12M18 6 6 18" />
+        </svg>
+      </button>
+    </div>
   </main>
 </template>
 
@@ -115,6 +129,36 @@ if (all_notes.notes.length <= 1) {
   display: flex;
   align-items: center;
   justify-content: center;
+
+}
+
+.toast {
+  display: grid;
+  grid-template-columns: 20px 1fr 20px;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid var(--borderColor);
+  border-radius: 10px;
+  position: absolute;
+  bottom: 70px;
+  right: 20px;
+  min-width: 270px;
+  font-size: 14px;
+
+  svg {
+    path {
+      fill: var(--green-500)
+    }
+  }
+
+
+  button {
+    justify-self: end;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
 }
 </style>
