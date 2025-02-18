@@ -1,6 +1,7 @@
 import { reactive } from "vue";
 import { type notesState, type noteObj, type userObj, type updateObj } from "./types";
 
+// user 
 export const user = reactive({
   username: '',
   theme: '',
@@ -24,8 +25,9 @@ export const user = reactive({
     this.font = u.font
     this.token = u.token
   }
-})
+});
 
+// auth status
 export const auth_status = reactive({
   authenticated: false,
   login() {
@@ -35,15 +37,17 @@ export const auth_status = reactive({
     this.authenticated = false
     localStorage.clear()
   }
-})
+});
 
+// all notes
 export const all_notes: notesState = reactive({
   notes: [{}],
   updateNotes(arr: noteObj[]) {
     this.notes = [...arr]
   }
-})
+});
 
+// selected note
 export const selected_note = reactive({
   note: { id: '1', title: '', text: '', isArchived: false, tags: [''], date: '' },
   displayEditor: false,
@@ -61,4 +65,17 @@ export const selected_note = reactive({
     this.note = { id: '', title: '', text: '', isArchived: false, tags: [''], date: '' }
     this.isNew = true
   }
-})
+});
+
+// toasts
+export const toast_message = reactive({
+  currentMsg: '',
+  showToast: false,
+  displayToast(b: boolean) {
+    this.showToast = b
+  },
+  changeMessage(m: string) {
+    this.currentMsg = m
+  }
+
+});
