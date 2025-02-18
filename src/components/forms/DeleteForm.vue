@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { user, auth_status, selected_note } from '@/context';
+import { user, auth_status, selected_note, toast_message } from '@/context';
 
-defineProps<{
+const { showModal } = defineProps<{
   showModal: (m: string) => void
 }>()
 
@@ -25,7 +25,12 @@ async function delete_note(event: Event) {
       auth_status.logout()
     }
 
-    // close modal / refresh*
+    // close modal / display toast
+    if (response.status === 200) {
+      showModal('')
+      toast_message.changeMessage('Note permanently deleted.')
+      toast_message.displayToast(true)
+    }
 
     console.log(data)
 

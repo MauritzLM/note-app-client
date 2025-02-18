@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { user, auth_status } from '@/context';
+import { user, auth_status, toast_message } from '@/context';
 
 const { current_theme = '' } = defineProps<{ current_theme?: string }>()
 
@@ -34,6 +34,8 @@ async function update_theme(event: Event) {
     // if success
     if (response.status === 200) {
       user.updateTheme(picked.value)
+      toast_message.displayToast(true)
+      toast_message.changeMessage('Settings updated successfully!')
 
       localStorage.setItem('user', JSON.stringify({ username: user.username, font: user.font, theme: picked.value, token: user.token }))
     }

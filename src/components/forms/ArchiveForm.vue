@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { user, selected_note, auth_status } from '@/context'
+import { user, selected_note, auth_status, toast_message } from '@/context'
 
-defineProps<{
+const { showModal } = defineProps<{
   showModal: (m: string) => void
 }>()
 
@@ -24,7 +24,13 @@ async function archive_note(event: Event) {
       auth_status.logout()
     }
 
-    // close modal / refresh*
+    if(response.status === 200) {
+      // close modal, display toast
+      showModal('')
+      toast_message.displayToast(true)
+      // display correct message*
+      toast_message.changeMessage('Note archived.')
+    }
 
     console.log(data)
 

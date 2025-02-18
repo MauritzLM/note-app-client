@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { auth_status, selected_note } from '@/context';
+import { auth_status, selected_note, toast_message } from '@/context';
 import { ref } from 'vue';
 import { user } from '@/context';
 import DeleteForm from './forms/DeleteForm.vue';
@@ -82,6 +82,11 @@ async function update_note() {
       auth_status.logout()
     }
 
+    if (response.status === 200) {
+      toast_message.changeMessage('Note saved successfully!')
+      toast_message.displayToast(true)
+    }
+
   } catch (error) {
     console.log(error)
   }
@@ -136,7 +141,8 @@ async function update_note() {
           </svg>
           <span>Tags</span>
         </label>
-        <textarea name="note-tags" id="note-tags" v-model="note_tags" placeholder="Add tags seperated by commas (e.g Work, Planning)" required></textarea>
+        <textarea name="note-tags" id="note-tags" v-model="note_tags"
+          placeholder="Add tags seperated by commas (e.g Work, Planning)" required></textarea>
         <!-- <input type="text" id="note-tags" name="note-tags" v-model="note_tags"
           placeholder="Add tags seperated by commas (e.g Work, Planning)" required /> -->
       </div>
@@ -162,7 +168,8 @@ async function update_note() {
     </div>
   </div>
 
-  <textarea name="note-text" id="note-text" v-model="editor" placeholder="Start typing your note here" rows="1"></textarea>
+  <textarea name="note-text" id="note-text" v-model="editor" placeholder="Start typing your note here"
+    rows="1"></textarea>
 
 
   <!-- delete note modal -->

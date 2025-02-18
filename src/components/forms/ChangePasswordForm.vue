@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { user, auth_status } from '@/context';
+import { user, auth_status, toast_message } from '@/context';
 
 const old_p = ref('')
 const new_p = ref('')
@@ -38,6 +38,9 @@ async function change_password(event: Event) {
       new_p.value = ''
       error.value = ''
       confirm_p.value = ''
+
+      toast_message.displayToast(true)
+      toast_message.changeMessage('Password changed successfully!')
     }
 
     console.log(data)
