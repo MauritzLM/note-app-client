@@ -1,17 +1,23 @@
 <script setup lang="ts">
-import { all_notes, selected_note } from '@/context';
+import { selected_note } from '@/context';
+import { type noteObj } from '@/types';
+
+// props -> all notes
+defineProps<{
+  notes?: noteObj[]
+}>()
 
 </script>
 
 <template>
   <h1>All Notes</h1>
   <ul>
-    <li v-for="note in all_notes.notes" :key="note.id" @click="selected_note.changeSelected(note)">
-      <h3>{{ note.title }}</h3>
+    <li data-test="note" v-for="note in notes" :key="note.id" @click="selected_note.changeSelected(note)">
+      <h3 data-test="title">{{ note.title }}</h3>
       <div>
         <span v-for="tag in note.tags" :key="tag">{{ tag }}</span>
       </div>
-      <p>{{ new Date(note.date).toLocaleString('en-GB', { 'day': 'numeric', 'month': 'short', 'year': 'numeric' }) }}
+      <p data-test="date">{{ new Date(note.date).toLocaleString('en-GB', { 'day': 'numeric', 'month': 'short', 'year': 'numeric' }) }}
       </p>
     </li>
   </ul>

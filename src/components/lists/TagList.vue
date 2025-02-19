@@ -1,13 +1,18 @@
 <script setup lang="ts">
-import { all_notes } from '@/context';
+import { type noteObj } from '@/types';
 import { computed, ref } from 'vue';
 import SelectedTagList from './SelectedTagList.vue';
+import { all_notes } from '@/context';
+
+const { notes } = defineProps<{
+  notes: noteObj[]
+}>()
 
 // get all tags
 const tag_list = computed(() => {
   const new_arr: string[] = []
 
-  all_notes.notes?.forEach(n => {
+  notes?.forEach(n => {
     n.tags?.forEach(t => {
       if (t !== '') {
         new_arr.push(t)
@@ -31,7 +36,7 @@ function changeTag(t: string) {
   <div :class="selected_tag === '' ? '' : 'hide'">
     <h1>Tags</h1>
     <ul>
-      <li v-for="tag in tag_list" :key="tag" @click="changeTag(tag)">
+      <li data-test="tag" v-for="tag in tag_list" :key="tag" @click="changeTag(tag)">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24">
           <path stroke="#0E121B" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
             d="M3.016 5.966c.003-1.411 1.07-2.677 2.456-2.916.284-.05 3.616-.042 4.995-.041 1.364 0 2.527.491 3.49 1.452 2.045 2.042 4.088 4.085 6.128 6.13 1.208 1.21 1.224 3.066.022 4.28a805.496 805.496 0 0 1-5.229 5.228c-1.212 1.201-3.069 1.186-4.279-.022-2.064-2.058-4.127-4.115-6.182-6.182-.795-.8-1.264-1.766-1.368-2.895-.084-.903-.035-4.26-.033-5.034Z"
@@ -45,7 +50,7 @@ function changeTag(t: string) {
     </ul>
   </div>
 
-  <button v-if="selected_tag !== ''" @click="changeTag('')" class="back-btn">
+  <button data-test="back-btn" v-if="selected_tag !== ''" @click="changeTag('')" class="back-btn">
     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24">
       <path fill="#000" fill-rule="evenodd" d="M15.75 20.414 7.336 12l8.414-8.414L17.164 5l-7 7 7 7-1.414 1.414Z"
         clip-rule="evenodd" />
@@ -53,7 +58,7 @@ function changeTag(t: string) {
     <span>Go back</span>
   </button>
   <!-- if tag selected -->
-  <SelectedTagList :tag="selected_tag" v-if="selected_tag !== ''" />
+  <SelectedTagList data-test="selected" :tag="selected_tag" :notes="all_notes.notes" v-if="selected_tag !== ''" />
 </template>
 
 <style scoped>

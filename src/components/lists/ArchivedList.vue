@@ -1,9 +1,14 @@
 <script setup lang="ts">
-import { all_notes, selected_note } from '../../context';
+import { selected_note } from '../../context';
+import { type noteObj } from '@/types';
 import { computed } from 'vue';
 
+const { notes } = defineProps<{
+  notes: noteObj[]
+}>()
+
 const archived_notes = computed(() => {
-  return all_notes.notes.filter(item => item.isArchived)
+  return notes.filter(item => item.isArchived)
 })
 
 
@@ -14,12 +19,15 @@ const archived_notes = computed(() => {
   <p class="description">All your archived notes are stored here. You can restore or delete them anytime.</p>
 
   <ul>
-    <li v-for="note in archived_notes" :key="note.id" @click="selected_note.changeSelected(note)">
-      <h3>{{ note.title }}</h3>
+    <li data-test="note" v-for="note in archived_notes" :key="note.id" @click="selected_note.changeSelected(note)">
+      <h3 data-test="title">{{ note.title }}</h3>
       <div>
         <span v-for="tag in note.tags" :key="`${note.id}-${tag}`">{{ tag }}</span>
       </div>
-      <p>{{ new Date(note.date).toLocaleString('en-GB', { 'day': 'numeric', 'month': 'short', 'year': 'numeric' }) }}</p>
+      <p data-test="date">{{ new Date(note.date).toLocaleString('en-GB', {
+        'day': 'numeric', 'month': 'short', 'year':
+          'numeric' }) }}
+      </p>
     </li>
   </ul>
 </template>

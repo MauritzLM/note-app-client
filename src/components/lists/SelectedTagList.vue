@@ -1,21 +1,23 @@
 <script setup lang="ts">
-import { all_notes, selected_note } from '@/context';
+import { selected_note } from '@/context';
 import { computed } from 'vue';
+import { type noteObj } from '@/types';
 
-const { tag = '' } = defineProps<{ tag?: string }>()
+const { tag = '', notes } = defineProps<{ tag?: string, notes: noteObj[] }>()
+
 
 const tag_notes = computed(() => {
-  return all_notes.notes.filter(item => item.tags.includes(tag))
+  return notes.filter(item => item.tags.includes(tag))
 })
 
 </script>
 
 <template>
-  <h1><span>Notes tagged:</span> {{ tag }}</h1>
+  <h1 data-test="heading"><span>Notes tagged:</span> {{ tag }}</h1>
   <p class="description">All notes with the "{{ tag }}" tag are shown here.</p>
 
   <ul>
-    <li v-for="n in tag_notes" :key="`${n.id}-${n.isArchived}`" @click="selected_note.changeSelected(n)">
+    <li data-test="note" v-for="n in tag_notes" :key="`${n.id}-${n.isArchived}`" @click="selected_note.changeSelected(n)">
       <h3>{{ n.title }}</h3>
       <div>
         <span v-for="tag in n.tags" :key="`${n.id}-${tag}`">{{ tag }}</span>
