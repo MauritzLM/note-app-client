@@ -54,18 +54,18 @@ if (all_notes.notes.length <= 1) {
     <!-- notes list render list depending on params -->
     <!-- <h1>{{ current_route.params.list }} Notes</h1> -->
 
-    <div :class="selected_note.displayEditor ? 'hide' : 'current-list'">
+    <div data-test="current-list" :class="selected_note.displayEditor ? 'hide' : 'current-list'">
       <!-- all notes list -->
-      <AllNotes v-if="$route.params.list === 'all'" />
+      <AllNotes v-if="$route.params.list === 'all'" :notes="all_notes.notes" />
 
       <!-- Search list -->
-      <SearchList v-if="$route.params.list === 'search'" />
+      <SearchList v-if="$route.params.list === 'search'" :notes="all_notes.notes" />
 
       <!-- Archived notes list -->
-      <ArchivedList v-if="$route.params.list === 'archived'" />
+      <ArchivedList v-if="$route.params.list === 'archived'" :notes="all_notes.notes" />
 
       <!-- Tag list -->
-      <TagList v-if="$route.params.list === 'tags'" />
+      <TagList v-if="$route.params.list === 'tags'" :notes="all_notes.notes" />
     </div>
 
     <div :class="selected_note.displayEditor ? 'editor' : 'hide'">

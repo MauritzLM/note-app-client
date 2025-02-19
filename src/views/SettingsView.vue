@@ -20,7 +20,7 @@ function select_form(v: string) {
       <h1>Settings</h1>
 
       <div>
-        <button @click="select_form('color')">
+        <button data-test="option" @click="select_form('color')">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24">
             <path stroke="#0E121B" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
               d="M12.055 3v1.372m0 15.256V21m9-9h-1.372M4.427 12H3.055m15.364-6.364-.97.97M6.66 17.394l-.97.97m12.728 0-.97-.97M6.66 6.606l-.97-.97" />
@@ -29,7 +29,7 @@ function select_form(v: string) {
           </svg>
           <span>Color theme</span>
         </button>
-        <button @click="select_form('font')">
+        <button data-test="option" @click="select_form('font')">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24">
             <path fill="#0E121B" fill-rule="evenodd"
               d="M20.999 10.979H14.63a1 1 0 0 0-1 1v1.13a1 1 0 1 0 2 0v-.13h1.154v4.409h-.39a1 1 0 1 0 0 2h2.84a1 1 0 1 0 0-2h-.45v-4.41h1.214v.13a1 1 0 1 0 2 0v-1.13a1 1 0 0 0-1-1Z"
@@ -40,7 +40,7 @@ function select_form(v: string) {
           </svg>
           <span>Font theme</span>
         </button>
-        <button @click="select_form('password')">
+        <button data-test="option" @click="select_form('password')">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24">
             <path stroke="#0E121B" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
               d="M16.424 9.448V7.3a4.552 4.552 0 0 0-4.551-4.551 4.55 4.55 0 0 0-4.57 4.53v2.168" />
@@ -52,7 +52,7 @@ function select_form(v: string) {
           </svg>
           <span>Change password</span>
         </button>
-        <button @click="auth_status.logout">
+        <button data-test="option" @click="auth_status.logout">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24">
             <path stroke="#0E121B" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
               d="M21 11.998H8.945m12.055 0-2.932-2.934M21 11.998l-2.932 2.936M14.556 8.266V7.251c0-1.56-1.121-2.891-2.651-3.15L6.702 3.046C4.765 2.718 3 4.219 3 6.195v11.61c0 1.976 1.765 3.477 3.702 3.15l5.203-1.057a3.188 3.188 0 0 0 2.65-3.149v-1.014" />
@@ -62,7 +62,7 @@ function select_form(v: string) {
       </div>
     </div>
 
-    <div :class="current_setting ? 'current-setting' : 'hide'">
+    <div data-test="current-setting" :class="current_setting ? 'current-setting' : 'hide'">
       <button class="back-btn" @click="select_form('')"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
           fill="none" viewBox="0 0 24 24">
           <path fill="#000" fill-rule="evenodd" d="M15.75 20.414 7.336 12l8.414-8.414L17.164 5l-7 7 7 7-1.414 1.414Z"
@@ -70,7 +70,8 @@ function select_form(v: string) {
         </svg>
         <span>Settings</span>
       </button>
-      <ColorThemeForm v-if="current_setting === 'color'" :current_theme="user.theme" :key="user.theme" />
+
+      <ColorThemeForm data-test="form" v-if="current_setting === 'color'" :current_theme="user.theme" :key="user.theme" />
 
       <FontThemeForm v-if="current_setting === 'font'" :current_font="user.font" :key="user.font" />
 
