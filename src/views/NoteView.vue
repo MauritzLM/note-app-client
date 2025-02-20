@@ -5,20 +5,10 @@ import AllNotes from '@/components/lists/AllNotes.vue'
 import TagList from '@/components/lists/TagList.vue'
 import NoteEditor from '@/components/NoteEditor.vue'
 import { auth_status, user, all_notes, selected_note, toast_message } from '../context.ts'
-// import { useRoute } from 'vue-router'
-// import { computed } from 'vue'
-
-// const current_route = useRoute()
-
-// const page_heading = computed(() => {
-//   if (current_route === 'all') {
-//     return 'All notes'
-//   }
-// })
 
 async function get_all_notes() {
   try {
-    const response = await fetch('http://127.0.0.1/notes/all', {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/notes/all`, {
       method: 'GET',
       headers: {
         'authorization': `bearer ${user.token}`

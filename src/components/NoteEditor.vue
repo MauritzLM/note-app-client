@@ -31,7 +31,7 @@ async function create_note() {
       tags: note_tags.value.split(',').map(t => t.trim())
     }
 
-    const response = await fetch('http://localhost:8000/notes/create', {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/notes/create`, {
       method: 'POST',
       headers: {
         'authorization': `bearer ${user.token}`,
@@ -65,7 +65,7 @@ async function update_note() {
 
     console.log(note_to_update)
 
-    const response = await fetch('http://127.0.0.1/notes/update', {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/notes/update`, {
       method: 'PUT',
       headers: {
         'authorization': `bearer ${user.token}`,

@@ -14,7 +14,7 @@ async function update_font(event: Event) {
     if (picked.value === user.font) {
       return
     }
-    const response = await fetch('http://127.0.0.1/users/font', {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/users/font`, {
       method: 'POST',
       headers: {
         'authorization': `bearer ${user.token}`,

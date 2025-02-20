@@ -19,7 +19,7 @@ async function login(event: Event) {
     formData.append('username', name_input.value)
     formData.append('password', password_input.value)
 
-    const response = await fetch('http://127.0.0.1/users/login', {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/users/login`, {
       method: 'POST',
       body: formData
     })

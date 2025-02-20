@@ -14,7 +14,7 @@ async function update_theme(event: Event) {
     if (picked.value === user.theme) {
       return
     }
-    const response = await fetch('http://127.0.0.1/users/color', {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/users/color`, {
       method: 'POST',
       headers: {
         'authorization': `bearer ${user.token}`,

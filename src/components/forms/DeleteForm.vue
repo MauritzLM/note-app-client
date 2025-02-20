@@ -10,7 +10,7 @@ async function delete_note(event: Event) {
   try {
     event.preventDefault()
 
-    const response = await fetch('http://127.0.0.1/notes/delete', {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/notes/delete`, {
       method: 'POST',
       headers: {
         'authorization': `bearer ${user.token}`,
