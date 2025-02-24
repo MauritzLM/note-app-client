@@ -135,6 +135,7 @@ if (all_notes.notes.length <= 1) {
   right: 20px;
   min-width: 270px;
   font-size: 14px;
+  background-color: var(--bodyBackgroundColor);
 
   svg {
     path {

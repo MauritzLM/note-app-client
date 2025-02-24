@@ -67,7 +67,7 @@ import { RouterLink } from 'vue-router';
           <span>Tags</span>
         </RouterLink>
         
-        <!-- get correct location for settings* -->
+        <!-- get correct location(params) for settings* -->
         <RouterLink :class="$route.params.list === 'settings' ? 'cs-active' : ''" to="/settings">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path fill="#0E121B" fill-rule="evenodd"

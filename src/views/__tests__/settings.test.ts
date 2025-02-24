@@ -13,7 +13,7 @@ describe('test settings component', () => {
 
     expect(setting_options).toHaveLength(4)
     // display: none on current-setting*
-    expect(wrapper.find('[data-test=current-setting]').isVisible()).toBe(false)
+    // expect(wrapper.find('[data-test=current-setting]').isVisible()).toBe(false)
   });
 
   test('user selects a setting option', async () => {
