@@ -52,17 +52,17 @@ async function change_password(event: Event) {
 </script>
 
 <template>
-  <form action="" @submit="change_password">
+  <form data-test="form" action="" @submit="change_password">
     <h2>Change password</h2>
 
     <div class="form-group">
       <label for="old">Old password</label>
-      <input type="password" name="old" id="old" v-model="old_p">
+      <input data-test="old" type="password" name="old" id="old" v-model="old_p">
     </div>
 
     <div class="form-group">
       <label for="new">New password</label>
-      <input type="password" name="new" id="new" v-model="new_p">
+      <input data-test="new" type="password" name="new" id="new" v-model="new_p">
       <div>
         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="none" viewBox="0 0 24 24">
           <path stroke="#0E121B" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
@@ -74,7 +74,7 @@ async function change_password(event: Event) {
 
     <div class="form-group">
       <label for="confirm">Confirm New password</label>
-      <input type="password" name="confirm" id="confirm" v-model="confirm_p">
+      <input data-test="confirm" type="password" name="confirm" id="confirm" v-model="confirm_p">
     </div>
     <p>{{ error }}</p>
 

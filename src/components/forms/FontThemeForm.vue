@@ -48,7 +48,7 @@ async function update_font(event: Event) {
 </script>
 
 <template>
-  <form action="" @submit="update_font">
+  <form data-test="form" action="" @submit="update_font">
     <h2>Font Theme</h2>
     <p>Choose your font theme:</p>
 

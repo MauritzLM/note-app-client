@@ -49,7 +49,7 @@ async function update_theme(event: Event) {
 </script>
 
 <template>
-  <form action="" @submit="update_theme">
+  <form data-test="form" action="" @submit="update_theme">
     <h2>Color Theme</h2>
     <p>Choose your color theme:</p>
 

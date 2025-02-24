@@ -42,7 +42,7 @@ async function archive_note(event: Event) {
 </script>
 
 <template>
-  <form action="" @submit="archive_note">
+  <form data-test="form" action="" @submit="archive_note">
     <div class="text">
       <div>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -59,8 +59,8 @@ async function archive_note(event: Event) {
       </div>
     </div>
     <div class="buttons">
-      <button @click="showModal('')" type="button">Cancel</button>
-      <button type="submit">Archive Note</button>
+      <button data-test="cancel" @click="showModal('')" type="button">Cancel</button>
+      <button data-test="submit" type="submit">Archive Note</button>
     </div>
 
   </form>
