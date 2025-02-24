@@ -105,7 +105,7 @@ async function update_note() {
     </button>
     <!-- save, archive, delete buttons* -->
     <div v-if="selected_note.isNew">
-      <button class="save-btn" @click="create_note()">save note</button>
+      <button data-test="save" class="save-btn" @click="create_note()">save note</button>
     </div>
     <div v-else>
       <button @click="display_modal('delete')">
@@ -122,12 +122,12 @@ async function update_note() {
             d="m15 14-3.002 3L9 14M11.998 17v-7M20.934 7H3.059" />
         </svg>
       </button>
-      <button class="save-btn" @click="update_note()">save note</button>
+      <button data-test="save" class="save-btn" @click="update_note()">save note</button>
     </div>
   </div>
   <!-- title, tags -->
   <div class="title-section">
-    <input type="text" id="note-title" name="note-title" v-model="note_title" placeholder="Enter a title..." required />
+    <input data-test="note-title" type="text" id="note-title" name="note-title" v-model="note_title" placeholder="Enter a title..." required />
     <div class="col-2">
       <div class="form-group">
         <label for="note-tags">
@@ -141,7 +141,7 @@ async function update_note() {
           </svg>
           <span>Tags</span>
         </label>
-        <textarea name="note-tags" id="note-tags" v-model="note_tags"
+        <textarea data-test="note-tags" name="note-tags" id="note-tags" v-model="note_tags"
           placeholder="Add tags seperated by commas (e.g Work, Planning)" required></textarea>
         <!-- <input type="text" id="note-tags" name="note-tags" v-model="note_tags"
           placeholder="Add tags seperated by commas (e.g Work, Planning)" required /> -->
@@ -161,14 +161,14 @@ async function update_note() {
 
           <span>Last Edited</span>
         </label>
-        <span>{{ selected_note.note.date ? new Date(selected_note.note.date).toLocaleString('en-GB', {
+        <span data-test="note-date">{{ selected_note.note.date ? new Date(selected_note.note.date).toLocaleString('en-GB', {
           'day': 'numeric', 'month': 'short', 'year': 'numeric'
         }) : 'Not saved yet' }}</span>
       </div>
     </div>
   </div>
 
-  <textarea name="note-text" id="note-text" v-model="editor" placeholder="Start typing your note here"
+  <textarea data-test="note-content" name="note-text" id="note-text" v-model="editor" placeholder="Start typing your note here"
     rows="1"></textarea>
 
 
@@ -182,9 +182,6 @@ async function update_note() {
     <ArchiveForm v-if="showmodal === 'archive'" :show-modal="display_modal" />
 
   </div>
-
-
-  <!-- archive note modal -->
 
 </template>
 
