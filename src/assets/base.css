@@ -207,6 +207,10 @@ div[data-theme="dark"] {
   color: var(--textColorMain);
 }
 
+html {
+  font-family: 'Inter', sans-serif, system-ui;
+}
+
 /* font theme */
 div[data-font="sans-serif"] {
   --bodyFont: 'Inter', sans-serif, system-ui;
@@ -222,3 +226,4 @@ div[data-font="monospace"] {
   --bodyFont: 'Source Code Pro', monospace, system-ui;
   font-family: var(--bodyFont);
 }
+
