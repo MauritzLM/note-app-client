@@ -35,7 +35,7 @@ function changeTag(t: string) {
 <template>
   <div :class="selected_tag === '' ? '' : 'hide'">
     <h1>Tags</h1>
-    <div v-if="notes.length === 0">
+    <div v-if="notes.length === 0" class="empty-msg">
       <p>You don’t have any notes yet. Start a new note to capture your thoughts and ideas.</p>
     </div>
     <ul>
@@ -65,6 +65,14 @@ function changeTag(t: string) {
 </template>
 
 <style scoped>
+.empty-msg {
+  padding: 8px;
+  background-color: var(--bannerColor);
+  border: 1px solid var(--borderColor);
+  border-radius: 10px;
+  margin: 16px 0;
+}
+
 .hide {
   display: none;
 }
