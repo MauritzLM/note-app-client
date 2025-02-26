@@ -21,9 +21,6 @@ async function login(event: Event) {
 
     const response = await fetch(`${import.meta.env.VITE_API_URL}/users/login`, {
       method: 'POST',
-      headers: {
-        'Content-type': 'multipart/form-data'
-      },
       body: formData
     })
 
