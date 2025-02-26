@@ -12,7 +12,7 @@ defineProps<{
 <template>
   <h1>All Notes</h1>
 
-  <div v-if="notes.length === 0" class="empty_msg">
+  <div v-if="notes.length === 0" class="empty-msg">
       <p>You don’t have any notes yet. Start a new note to capture your thoughts and ideas.</p>
   </div>
   <ul vi-else>
@@ -36,6 +36,7 @@ defineProps<{
   border-radius: 10px;
   margin: 16px 0;
 }
+
 ul {
 
   li {
