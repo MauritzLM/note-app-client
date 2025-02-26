@@ -31,19 +31,16 @@ async function get_all_notes() {
   }
 }
 
-if (all_notes.notes.length <= 1) {
+if (all_notes.notes.length === 0) {
   get_all_notes()
 }
-
-// watch(() => route.params.list, get_all_notes, { immediate: true, once: true })
 
 </script>
 
 <template>
   <main>
     <!-- notes list render list depending on params -->
-    <!-- <h1>{{ current_route.params.list }} Notes</h1> -->
-
+    
     <div data-test="current-list" :class="selected_note.displayEditor ? 'hide' : 'current-list'">
       <!-- all notes list -->
       <AllNotes v-if="$route.params.list === 'all'" :notes="all_notes.notes" />
@@ -73,7 +70,7 @@ if (all_notes.notes.length <= 1) {
       </svg>
     </button>
 
-    <!-- toast* -->
+    <!-- toast -->
     <div v-if="toast_message.showToast" class="toast">
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24">
         <path fill="#0E121B" fill-rule="evenodd"
