@@ -35,6 +35,9 @@ function changeTag(t: string) {
 <template>
   <div :class="selected_tag === '' ? '' : 'hide'">
     <h1>Tags</h1>
+    <div v-if="notes.length === 0">
+      <p>You don’t have any notes yet. Start a new note to capture your thoughts and ideas.</p>
+    </div>
     <ul>
       <li data-test="tag" v-for="tag in tag_list" :key="tag" @click="changeTag(tag)">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24">

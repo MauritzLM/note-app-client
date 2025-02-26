@@ -18,7 +18,10 @@ const archived_notes = computed(() => {
   <h1>Archived Notes</h1>
   <p class="description">All your archived notes are stored here. You can restore or delete them anytime.</p>
 
-  <ul>
+  <div v-if="notes.length === 0">
+      <p>No notes have been archived yet. Move notes here for safekeeping.</p>
+  </div>
+  <ul vi-else>
     <li data-test="note" v-for="note in archived_notes" :key="note.id" @click="selected_note.changeSelected(note)">
       <h3 data-test="title">{{ note.title }}</h3>
       <div>

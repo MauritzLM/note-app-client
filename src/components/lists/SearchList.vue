@@ -112,5 +112,6 @@ ul {
   background-color: var(--bannerColor);
   border: 1px solid var(--borderColor);
   border-radius: 10px;
+  margin-bottom: 16px;
 }
 </style>

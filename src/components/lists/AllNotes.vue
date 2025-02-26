@@ -4,14 +4,18 @@ import { type noteObj } from '@/types';
 
 // props -> all notes
 defineProps<{
-  notes?: noteObj[]
+  notes: noteObj[]
 }>()
 
 </script>
 
 <template>
   <h1>All Notes</h1>
-  <ul>
+
+  <div v-if="notes.length === 0">
+      <p>You don’t have any notes yet. Start a new note to capture your thoughts and ideas.</p>
+  </div>
+  <ul vi-else>
     <li data-test="note" v-for="note in notes" :key="note.id" @click="selected_note.changeSelected(note)">
       <h3 data-test="title">{{ note.title }}</h3>
       <div>
