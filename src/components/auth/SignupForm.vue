@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-defineProps<{
+const { pageToggle } = defineProps<{
   pageToggle: (m: string) => void
 }>()
 
@@ -19,8 +19,8 @@ async function sign_up(event: Event) {
     const response = await fetch(`${import.meta.env.VITE_API_URL}/users/create`, {
       method: 'POST',
       headers: {
-       'Content-type': 'application/json',
-       'Access-Control-Allow-Origin': `${import.meta.env.VITE_URL}`
+        'Content-type': 'application/json',
+        'Access-Control-Allow-Origin': `${import.meta.env.VITE_URL}`
       },
       body: JSON.stringify({ username: name_input.value, password: password_input.value, email: email_input.value })
     })
@@ -34,10 +34,12 @@ async function sign_up(event: Event) {
       return
     }
 
-    // success*
-    console.log(data)
+    // success
+    if (response.status === 200) {
+      pageToggle('login')
+    }
 
-    
+
   }
   catch (error) {
     console.log(error)
@@ -142,9 +144,9 @@ form {
     font-size: 14px;
     color: var(--descriptionTextColor);
 
-   button {
-    font-weight: 700;
-   }
+    button {
+      font-weight: 700;
+    }
   }
 }
 </style>
