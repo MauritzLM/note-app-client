@@ -41,7 +41,7 @@ export const auth_status = reactive({
 
 // all notes
 export const all_notes: notesState = reactive({
-  notes: [{}],
+  notes: [{}] as noteObj[],
   updateNotes(arr: noteObj[]) {
     this.notes = [...arr]
   }
