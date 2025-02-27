@@ -11,6 +11,7 @@ export interface noteObj {
 
 export interface notesState {
   notes: noteObj[],
+  update: number,
   updateNotes: (arr: noteObj[]) => void
 }
 

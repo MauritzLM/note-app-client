@@ -42,8 +42,10 @@ export const auth_status = reactive({
 // all notes
 export const all_notes: notesState = reactive({
   notes: [] as noteObj[],
+  update: 0,
   updateNotes(arr: noteObj[]) {
     this.notes = [...arr]
+    this.update += 1
   }
 });
 
@@ -64,6 +66,11 @@ export const selected_note = reactive({
     this.displayEditor = true
     this.note = { id: '', title: '', text: '', isArchived: false, tags: [''], date: '' }
     this.isNew = true
+  },
+  noteDeleted() {
+    this.displayEditor = false
+    this.note = { id: '', title: '', text: '', isArchived: false, tags: [''], date: '' }
+    this.isNew = false
   }
 });
 
