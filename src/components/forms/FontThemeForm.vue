@@ -115,6 +115,11 @@ form {
     margin: 12px 0;
   }
 
+  h2+p {
+    font-size: 14px;
+    color: var(--descriptionTextColor);
+  }
+
   .input-group {
     margin-top: 20px;
     display: flex;
@@ -164,6 +169,12 @@ form {
     input {
       height: 16px;
       width: 16px;
+    }
+
+    svg {
+      path {
+        fill: var(--textColorMain);
+      }
     }
   }
 

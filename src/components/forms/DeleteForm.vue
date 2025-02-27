@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { user, auth_status, selected_note, toast_message } from '@/context';
+import { user, auth_status, selected_note, toast_message, all_notes } from '@/context';
 
 const { showModal } = defineProps<{
   showModal: (m: string) => void
@@ -19,7 +19,7 @@ async function delete_note(event: Event) {
       body: JSON.stringify({ id: selected_note.note.id })
     })
 
-    const data = await response.json()
+    // const data = await response.json()
 
     if (response.status === 401) {
       auth_status.logout()
@@ -30,9 +30,12 @@ async function delete_note(event: Event) {
       showModal('')
       toast_message.changeMessage('Note permanently deleted.')
       toast_message.displayToast(true)
-    }
 
-    console.log(data)
+      // remove deleted note from all notes
+      const new_notes = all_notes.notes.filter(item => item.id !== selected_note.note.id)
+      all_notes.updateNotes(new_notes)
+      selected_note.noteDeleted()
+    }
 
   } catch (error) {
     console.log(error)

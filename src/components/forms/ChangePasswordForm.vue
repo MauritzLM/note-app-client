@@ -109,12 +109,20 @@ form {
       gap: 8px;
       font-size: 12px;
       color: var(--textColorAlt2);
+
+      svg {
+        path {
+          stroke: var(--descriptionTextColor);
+        }
+      }
     }
   }
 
   input {
     border-radius: 10px;
     margin-top: 10px;
+    background-color: var(--bodyBackgroundColor);
+    border-color: var(--textColorAlt2);
   }
 
   button {

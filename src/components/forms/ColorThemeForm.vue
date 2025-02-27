@@ -118,6 +118,11 @@ form {
     margin: 12px 0;
   }
 
+  h2+p {
+    font-size: 14px;
+    color: var(--descriptionTextColor);
+  }
+
   .input-group {
     margin-top: 20px;
     display: flex;
@@ -156,6 +161,7 @@ form {
 
         &:nth-of-type(2) {
           font-size: 12px;
+          color: var(--descriptionTextColor);
         }
       }
     }
@@ -167,6 +173,26 @@ form {
     input {
       height: 16px;
       width: 16px;
+    }
+
+    svg {
+      path {
+        fill: var(--textColorMain);
+      }
+    }
+  }
+
+  .form-group {
+    &:nth-of-type(1) {
+      label {
+        svg {
+          path {
+            stroke: var(--textColorMain);
+            fill: none;
+          }
+
+        }
+      }
     }
   }
 
