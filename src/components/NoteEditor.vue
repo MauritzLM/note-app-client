@@ -58,8 +58,6 @@ async function create_note() {
       all_notes.updateNotes(new_notes)
     }
 
-    console.log(data)
-
   } catch (error) {
     console.log(error)
   }
@@ -81,9 +79,7 @@ async function update_note() {
       body: JSON.stringify(note_to_update)
     })
 
-    const data = await response.json()
-
-    console.log(data)
+    // const data = await response.json()
 
     if (response.status === 401) {
       auth_status.logout()

@@ -23,9 +23,7 @@ async function update_theme(event: Event) {
       body: JSON.stringify({ color_theme: picked.value })
     })
 
-    const data = await response.json()
-
-    console.log(data)
+    // const data = await response.json()
 
     if (response.status === 401) {
       auth_status.logout()

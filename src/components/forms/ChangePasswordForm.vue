@@ -43,8 +43,6 @@ async function change_password(event: Event) {
       toast_message.changeMessage('Password changed successfully!')
     }
 
-    console.log(data)
-
   } catch (error) {
     console.log(error)
   }

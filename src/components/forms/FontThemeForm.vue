@@ -23,9 +23,7 @@ async function update_font(event: Event) {
       body: JSON.stringify({ font_theme: picked.value })
     })
 
-    const data = await response.json()
-
-    console.log(data)
+    // const data = await response.json()
 
     if (response.status === 401) {
       auth_status.logout()

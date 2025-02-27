@@ -19,7 +19,7 @@ async function archive_note(event: Event) {
       body: JSON.stringify({ id: selected_note.note.id })
     })
 
-    const data = await response.json()
+    // const data = await response.json()
 
     if (response.status === 401) {
       auth_status.logout()
@@ -38,8 +38,6 @@ async function archive_note(event: Event) {
 
       all_notes.updateNotes([...new_notes, updated_note])
     }
-
-    console.log(data)
 
 
   } catch (error) {
