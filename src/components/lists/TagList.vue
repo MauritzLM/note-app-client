@@ -81,8 +81,14 @@ function changeTag(t: string) {
   display: flex;
   align-items: center;
   gap: 6px;
-  color: var(--textColorAlt2);
+  color: var(--textColorMain);
   margin-bottom: 16px;
+
+  svg {
+    path {
+      fill: var(--textColorMain);
+    }
+  }
 }
 
 ul {
@@ -95,6 +101,12 @@ ul {
     align-items: center;
     gap: 10px;
     cursor: pointer;
+
+    svg {
+      path {
+        stroke: var(--textColorMain);
+      }
+    }
 
     span {
       font-size: 14px;

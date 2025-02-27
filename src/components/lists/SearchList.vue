@@ -69,6 +69,10 @@ const filteredNotes = computed(() => {
     position: absolute;
     top: 30px;
     left: 16px;
+
+    path {
+      fill: var(--neutral-500);
+    }
   }
 }
 

@@ -30,7 +30,7 @@ const tag_notes = computed(() => {
 <style scoped>
 h1 {
   span {
-    color: var(--textColorAlt1);
+    color: var(--textColorAlt4);
   }
 }
 
