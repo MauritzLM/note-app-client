@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import NoteView from '../views/NoteView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,30 +6,30 @@ const router = createRouter({
     {
      path: '/',
      name: 'index',
-     redirect: '/all/all'
+     redirect: '/all'
     },
     {
-      path: '/all/:list',
+      path: '/all',
       name: 'all notes',
-      component: NoteView,
+      component: () => import('../views/NoteView.vue'),
      
     },
     {
-      path: '/archived/:list',
+      path: '/archived',
       name: 'archived notes',
-      component: NoteView,
+      component: () => import('../views/NoteView.vue'),
       
     },
     {
-      path: '/search/:list',
+      path: '/search',
       name: 'search',
-      component: NoteView,
+      component: () => import('../views/NoteView.vue'),
       
     },
     {
-      path: '/tags/:list',
+      path: '/tags',
       name: 'tags',
-      component: NoteView,
+      component: () => import('../views/NoteView.vue'),
       
     },
     {
