@@ -168,6 +168,9 @@
   --red-100: #FFD5D8;
   --red-500: #FB3748;
 
+  --boxShadowLight: #F3F5F89d;
+  --boxShadowDark: #0E11189d;
+
   /* surface colors */
   --bodyBackgroundColor: var(--neutral-0);
   --bannerColor: var(--neutral-100);
@@ -175,12 +178,14 @@
   --surfaceColorAlt1: var(--neutral-100);
   --borderColor: var(--neutral-200);
   --tagBackground: var(--neutral-200);
+  --boxShadowColor: var(--boxShadowLight);
 
   /* text */
   --textColorMain: var(--neutral-950);
   --textColorAlt1: var(--neutral-700);
   --textColorAlt2: var(--neutral-600);
   --textColorAlt3: var(--neutral-600);
+  --textColorAlt4: var(--neutral-600);
   --descriptionTextColor: var(--neutral-700);
   --editorTextColor: var(--neutral-800);
 
@@ -200,8 +205,10 @@ div[data-theme="dark"] {
   --textColorAlt1: var(--neutral-200);
   --textColorAlt2: var(--neutral-300);
   --textColorAlt3: var(--neutral-200);
+  --textColorAlt4: var(--neutral-400);
   --descriptionTextColor: var(--neutral-300);
   --editorTextColor: var(--neutral-100);
+  --boxShadowColor: var(--boxShadowDark);
 
   background-color: var(--bodyBackgroundColor);
   color: var(--textColorMain);
