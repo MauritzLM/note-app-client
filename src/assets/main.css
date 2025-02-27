@@ -44,4 +44,5 @@ input {
     border-radius: 5px;
     border: 1px solid var(--borderColor);
     width: 100%;
+    color: var(--textColorMain);
 }
