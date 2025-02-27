@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { auth_status, selected_note, toast_message } from '@/context';
+import { all_notes, auth_status, selected_note, toast_message } from '@/context';
 import { ref } from 'vue';
 import { user } from '@/context';
 import DeleteForm from './forms/DeleteForm.vue';
 import ArchiveForm from './forms/ArchiveForm.vue';
+import type { noteObj } from '@/types';
 
 const { title = '', note_text = '', tags = [] } = defineProps<{ title?: string, note_text?: string, tags: string[] }>()
 
@@ -49,6 +50,12 @@ async function create_note() {
     // change new note state
     if (response.status === 200) {
       selected_note.changeSelected({ ...selected_note.note, ...new_note })
+      toast_message.changeMessage('Note created successfully!')
+      toast_message.displayToast(true)
+
+      // add new note to all notes
+      const new_notes = [...all_notes.notes, data.note]
+      all_notes.updateNotes(new_notes)
     }
 
     console.log(data)
@@ -85,6 +92,13 @@ async function update_note() {
     if (response.status === 200) {
       toast_message.changeMessage('Note saved successfully!')
       toast_message.displayToast(true)
+      // update all notes
+      // create new updated note obj
+      const updated_note: noteObj = { ...selected_note.note, title: note_title.value, text: editor.value, tags: note_tags.value.split(',').map(t => t.trim()) }
+      // remove old note
+      const new_notes = all_notes.notes.filter(item => item.id !== selected_note.note.id)
+
+      all_notes.updateNotes([...new_notes, updated_note])
     }
 
   } catch (error) {
@@ -105,7 +119,7 @@ async function update_note() {
     </button>
     <!-- save, archive, delete buttons* -->
     <div v-if="selected_note.isNew">
-      <button data-test="save" class="save-btn" @click="create_note()">save note</button>
+      <button data-test="save" class="save-btn" @click="create_note()">Save Note</button>
     </div>
     <div v-else>
       <button @click="display_modal('delete')">
@@ -122,12 +136,13 @@ async function update_note() {
             d="m15 14-3.002 3L9 14M11.998 17v-7M20.934 7H3.059" />
         </svg>
       </button>
-      <button data-test="save" class="save-btn" @click="update_note()">save note</button>
+      <button data-test="save" class="save-btn" @click="update_note()">Save Note</button>
     </div>
   </div>
   <!-- title, tags -->
   <div class="title-section">
-    <input data-test="note-title" type="text" id="note-title" name="note-title" v-model="note_title" placeholder="Enter a title..." required />
+    <input data-test="note-title" type="text" id="note-title" name="note-title" v-model="note_title"
+      placeholder="Enter a title..." required />
     <div class="col-2">
       <div class="form-group">
         <label for="note-tags">
@@ -161,15 +176,16 @@ async function update_note() {
 
           <span>Last Edited</span>
         </label>
-        <span data-test="note-date">{{ selected_note.note.date ? new Date(selected_note.note.date).toLocaleString('en-GB', {
-          'day': 'numeric', 'month': 'short', 'year': 'numeric'
-        }) : 'Not saved yet' }}</span>
+        <span data-test="note-date">{{ selected_note.note.date ? new
+          Date(selected_note.note.date).toLocaleString('en-GB', {
+            'day': 'numeric', 'month': 'short', 'year': 'numeric'
+          }) : 'Not saved yet' }}</span>
       </div>
     </div>
   </div>
 
-  <textarea data-test="note-content" name="note-text" id="note-text" v-model="editor" placeholder="Start typing your note here"
-    rows="1"></textarea>
+  <textarea data-test="note-content" name="note-text" id="note-text" v-model="editor"
+    placeholder="Start typing your note here" rows="1"></textarea>
 
 
   <!-- delete note modal -->
@@ -222,6 +238,7 @@ async function update_note() {
 
   .save-btn {
     color: var(--blue-500);
+    align-self: start;
   }
 
 }
@@ -249,7 +266,7 @@ async function update_note() {
 
   .form-group {
     display: grid;
-    grid-template-columns: 100px 1fr;
+    grid-template-columns: 150px 1fr;
     column-gap: 8px;
     font-size: 14px;
     align-items: start;
@@ -294,6 +311,8 @@ input,
 textarea {
   border: none;
   width: 100%;
+  background-color: var(--bodyBackgroundColor);
+  color: var(--editorTextColor)
 }
 
 #form-modal {
