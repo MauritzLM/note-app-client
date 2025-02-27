@@ -40,19 +40,19 @@ if (all_notes.notes.length === 0) {
 <template>
   <main>
     <!-- notes list render list depending on params -->
-    
+
     <div data-test="current-list" :class="selected_note.displayEditor ? 'hide' : 'current-list'">
       <!-- all notes list -->
-      <AllNotes v-if="$route.params.list === 'all'" :notes="all_notes.notes" />
+      <AllNotes v-if="$route.name === 'all notes'" :notes="all_notes.notes" :key="all_notes.update" />
 
       <!-- Search list -->
-      <SearchList v-if="$route.params.list === 'search'" :notes="all_notes.notes" />
+      <SearchList v-if="$route.name === 'search'" :notes="all_notes.notes" :key="all_notes.update" />
 
       <!-- Archived notes list -->
-      <ArchivedList v-if="$route.params.list === 'archived'" :notes="all_notes.notes" />
+      <ArchivedList v-if="$route.name === 'archived notes'" :notes="all_notes.notes" :key="all_notes.update" />
 
       <!-- Tag list -->
-      <TagList v-if="$route.params.list === 'tags'" :notes="all_notes.notes" />
+      <TagList v-if="$route.name === 'tags'" :notes="all_notes.notes" :key="all_notes.update" />
     </div>
 
     <div :class="selected_note.displayEditor ? 'editor' : 'hide'">
@@ -80,7 +80,7 @@ if (all_notes.notes.length === 0) {
       <span>{{ toast_message.currentMsg }}</span>
       <button @click="toast_message.displayToast(false)">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24">
-          <path stroke="#0E121B" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+          <path class="stroke" stroke="#0E121B" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
             d="m6 6 12 12M18 6 6 18" />
         </svg>
       </button>
@@ -146,6 +146,10 @@ if (all_notes.notes.length === 0) {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    .stroke {
+      stroke: var(--neutral-400);
+    }
   }
 
 }
