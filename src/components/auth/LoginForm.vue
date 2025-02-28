@@ -82,7 +82,7 @@ async function login(event: Event) {
       <label for="password">Password</label>
       <input v-model="password_input" type="password" name="password" id="password">
     </div>
-    <span>{{ error }}</span>
+    <span class="error">{{ error }}</span>
 
     <button type="submit" class="btn-primary">Login</button>
     <div class="line"></div>
