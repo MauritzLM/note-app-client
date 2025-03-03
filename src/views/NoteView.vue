@@ -153,4 +153,24 @@ if (all_notes.notes.length === 0) {
   }
 
 }
+
+/* tablet styles */
+@media screen and (min-width: 820px) {
+  .current-list {
+    padding: 24px 32px;
+  }
+
+  .editor {
+    padding: 20px 32px;
+    margin-top: 24px;
+  }
+}
+
+/* desktop styles */
+@media screen and (min-width: 1000px) {
+  .editor {
+    min-height: 100vh;
+    margin-top: 0;
+  }
+}
 </style>

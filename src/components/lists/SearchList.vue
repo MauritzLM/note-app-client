@@ -118,4 +118,13 @@ ul {
   border-radius: 10px;
   margin-bottom: 16px;
 }
+
+/* desktop styles */
+@media screen and (min-width: 1000px) {
+
+  .input-wrapper,
+  .no-match {
+    max-width: 600px;
+  }
+}
 </style>

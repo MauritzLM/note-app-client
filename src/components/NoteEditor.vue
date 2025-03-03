@@ -295,7 +295,7 @@ async function update_note() {
 
 #note-text {
   appearance: none;
-  padding: 12px 0;
+  padding: 16px 0;
   display: block;
   overflow: auto;
   outline: none;

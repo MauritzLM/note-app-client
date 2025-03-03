@@ -93,6 +93,8 @@ function changeTag(t: string) {
 
 ul {
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
 
   li {
     border-bottom: 1px solid var(--borderColor);
@@ -115,6 +117,18 @@ ul {
 
     &:last-child {
       border-bottom: none;
+    }
+  }
+}
+
+@media screen and (min-width: 700px) { 
+  ul {
+    gap: 6px;
+
+    li {
+      span {
+        font-size: 16px;
+      }
     }
   }
 }
