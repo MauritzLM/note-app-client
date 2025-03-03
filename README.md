@@ -1,45 +1,60 @@
-# note-app-client
+# Frontend Mentor - Note Taking App
 
-This template should help get you started developing with Vue 3 in Vite.
+This is a project for [frontend mentor](https://www.frontendmentor.io/). It is a simple note taking app with authentication, crud and search functionality.
+The backend was built using [fastapi](https://fastapi.tiangolo.com/).
+The project was created using the vue@latest npm cmd.
+Hosted on [Vercel](https://vercel.com/).
 
-## Recommended IDE Setup
+Tools used:
+- [Vite](https://vite.dev/)
+- [Vuejs](https://vuejs.org/) with Typescript
+- Vue Router
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Notes
+- First time using vuejs, always used react. It is like people say better dev experience. Easier to manage state / component complexity
+- If you want initialize an empty array or object inside your app context or reactive state (used as context) cast it to the correct type.
 
-## Type Support for `.vue` Imports in TS
+```ts
+// note object in types.ts
+export interface noteObj {
+  id: string,
+  title: string,
+  text: string,
+  isArchived: boolean,
+  tags: string[]
+  date: string
+}
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+// context object
+export const all_notes: notesState = reactive({
+  notes: [] as noteObj[],
+  ...
+})
 ```
+- You can use $route.name to get current route name (the name used in create router setup)
+- Things to add: password reset, authentication using google account
 
-### Compile and Hot-Reload for Development
 
-```sh
-npm run dev
-```
+## App structure
 
-### Type-Check, Compile and Minify for Production
+### Auth
+ - The auth component displays either the signup or login form depending on state
 
-```sh
-npm run build
-```
+### Lists
+- All notes: a list of all user notes
+- Archived notes: a list of all archived notes
+- Tags: a list of all tags used for notes
+- Search list: a list of all notes who's title and tags matches the search term 
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+### Editor
+The note editor is just an html textarea 
 
-```sh
-npm run test:unit
-```
+### Settings
+The settings view contains the following:
 
-### Lint with [ESLint](https://eslint.org/)
+- Color theme: light, dark or system(default)
+- Font theme: serif, sans-serif(default) or monospace
+- Change password
+- Logout
 
-```sh
-npm run lint
-```
+## Helpful links
