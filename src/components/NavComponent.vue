@@ -32,7 +32,8 @@ import { RouterLink } from 'vue-router';
       <!-- mobile buttons: [all notes, archived, search, tags, settings] -->
 
       <nav>
-        <RouterLink @click="selected_note.changeDisplay(false)" :class="$route.name === 'all notes' ? 'cs-active' : ''" to="/all">
+        <RouterLink @click="selected_note.changeDisplay(false)" :class="$route.name === 'all notes' ? 'cs-active' : ''"
+          to="/all">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path class="fill" fill="#0E121B" fill-rule="evenodd"
               d="M4.496 8.025a.75.75 0 0 1 .75.75v8.675a2.314 2.314 0 0 0 2.314 2.314h8.88a2.314 2.314 0 0 0 2.313-2.314V8.775a.75.75 0 0 1 1.5 0v8.675a3.814 3.814 0 0 1-3.814 3.814H7.56a3.814 3.814 0 0 1-3.814-3.814V8.775a.75.75 0 0 1 .75-.75Z"
@@ -47,7 +48,8 @@ import { RouterLink } from 'vue-router';
           <span>Home</span>
         </RouterLink>
 
-        <RouterLink @click="selected_note.changeDisplay(false)" :class="$route.name === 'archived notes' ? 'cs-active' : ''" to="/archived">
+        <RouterLink @click="selected_note.changeDisplay(false)"
+          :class="$route.name === 'archived notes' ? 'cs-active' : ''" to="/archived">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path class="stroke" stroke="#0E121B" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
               d="M21 7.782v8.435C21 19.165 18.919 21 15.974 21H8.026C5.081 21 3 19.165 3 16.216V7.782C3 4.834 5.081 3 8.026 3h7.948C18.919 3 21 4.843 21 7.782Z" />
@@ -57,7 +59,8 @@ import { RouterLink } from 'vue-router';
           <span>Archived</span>
         </RouterLink>
 
-        <RouterLink @click="selected_note.changeDisplay(false)" :class="$route.name === 'search' ? 'cs-active' : ''" to="/search">
+        <RouterLink @click="selected_note.changeDisplay(false)" :class="$route.name === 'search' ? 'cs-active' : ''"
+          to="/search">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path class="fill" fill="#0E121B" fill-rule="evenodd"
               d="M11.248 3.5a7.289 7.289 0 1 0 0 14.577 7.289 7.289 0 0 0 0-14.577ZM2.46 10.79a8.789 8.789 0 1 1 17.577 0 8.789 8.789 0 0 1-17.577 0Z"
@@ -68,7 +71,8 @@ import { RouterLink } from 'vue-router';
           <span>Search</span>
         </RouterLink>
 
-        <RouterLink @click="selected_note.changeDisplay(false)" :class="$route.name === 'tags' ? 'cs-active' : ''" to="/tags">
+        <RouterLink @click="selected_note.changeDisplay(false)" :class="$route.name === 'tags' ? 'cs-active' : ''"
+          to="/tags">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path class="stroke" stroke="#0E121B" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
               d="M3.016 5.966c.003-1.411 1.07-2.677 2.456-2.916.284-.05 3.616-.042 4.995-.041 1.364 0 2.527.491 3.49 1.452 2.045 2.042 4.088 4.085 6.128 6.13 1.208 1.21 1.224 3.066.022 4.28a805.496 805.496 0 0 1-5.229 5.228c-1.212 1.201-3.069 1.186-4.279-.022-2.064-2.058-4.127-4.115-6.182-6.182-.795-.8-1.264-1.766-1.368-2.895-.084-.903-.035-4.26-.033-5.034Z"
@@ -154,6 +158,73 @@ header {
       }
 
 
+    }
+  }
+}
+
+/* tablet styles */
+@media screen and (min-width: 700px) {
+  header {
+    nav {
+      a {
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        color: var(--textColorMain);
+        gap: 4px;
+
+        span {
+          display: block;
+        }
+      }
+
+      .cs-active {
+        span {
+          color: var(--blue-500);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 820px) { 
+  header {
+    .banner {
+      padding: 24px 32px;
+    }
+
+    nav {
+      padding: 12px 32px;
+    }
+  }
+}
+
+/* desktop styles */
+@media screen and (min-width: 1000px) {
+  header {
+    .wrapper {
+      border-right: 1px solid var(--borderColor);
+      min-height: 100vh;
+    }
+
+    .banner {
+      background-color: var(--bodyBackgroundColor);
+      padding: 24px 16px;
+    }
+
+    nav {
+      position: static;
+      flex-direction: column;
+      box-shadow: none;
+      gap: 4px;
+      padding: 16px;
+
+      a {
+        flex-direction: row;
+        justify-content: start;
+        padding: 10px 12px;
+        gap: 8px;
+      }
     }
   }
 }

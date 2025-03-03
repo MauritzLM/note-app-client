@@ -45,4 +45,10 @@ watch(user, () => {
   grid-template-columns: 1fr;
   grid-template-rows: 54px auto;
 }
+
+@media screen and (min-width: 1000px) {
+.container {
+  grid-template-columns: 250px 1fr;
+}
+}
 </style>
